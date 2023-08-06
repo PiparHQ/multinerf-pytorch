@@ -56,14 +56,14 @@ EXP_NAME=360_v2/bicycle
 # "--gin_configs=configs/360.gin" can be seen as a default config 
 # and you can add specific config useing --gin_bindings="..." 
 accelerate launch train.py \
-    --gin_configs=configs/360.gin \
+    --gin_configs='configs/360.gin' \
     --gin_bindings="Config.data_dir = '${DATA_DIR}'" \
     --gin_bindings="Config.exp_name = '${EXP_NAME}'" \
     --gin_bindings="Config.factor = 4"
 
 # or you can also run without accelerate (without DDP)
 CUDA_VISIBLE_DEVICES=0 python train.py \
-    --gin_configs=configs/360.gin \
+    --gin_configs='configs/360.gin' \
     --gin_bindings="Config.data_dir = '${DATA_DIR}'" \
     --gin_bindings="Config.exp_name = '${EXP_NAME}'" \
       --gin_bindings="Config.factor = 4" 
@@ -80,7 +80,7 @@ tensorboard --logdir "exp/${EXP_NAME}"
 Rendering results can be found in the directory `exp/${EXP_NAME}/render`
 ```
 accelerate launch render.py \
-    --gin_configs=configs/360.gin \
+    --gin_configs='configs/360.gin' \
     --gin_bindings="Config.data_dir = '${DATA_DIR}'" \
     --gin_bindings="Config.exp_name = '${EXP_NAME}'" \
     --gin_bindings="Config.render_path = True" \
